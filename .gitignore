@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# PyInstaller
+build/
+dist/
+*.spec.bak
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# User config (personal settings path stored here)
+.terminalconfig_editor.json
+
+# OS
+Thumbs.db
+Desktop.ini

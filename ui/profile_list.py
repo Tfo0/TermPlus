@@ -1,4 +1,5 @@
 import uuid
+import copy
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QListWidget, QListWidgetItem, QPushButton,
     QLabel, QAbstractItemView, QStyledItemDelegate, QStyle
@@ -120,22 +121,26 @@ class ProfileListWidget(QWidget):
         self.up_btn = QPushButton("↑")
         self.down_btn = QPushButton("↓")
         self.add_btn = QPushButton("+")
+        self.dup_btn = QPushButton("⧉")
         self.del_btn = QPushButton("−")
         self.toggle_btn = QPushButton("→ 归档")
 
-        for btn in (self.up_btn, self.down_btn, self.add_btn, self.del_btn):
+        for btn in (self.up_btn, self.down_btn, self.add_btn, self.dup_btn, self.del_btn):
             btn.setFixedWidth(32)
+        self.dup_btn.setToolTip("复制选中的 Profile")
         self.toggle_btn.setMinimumWidth(60)
 
         self.up_btn.clicked.connect(self.move_up)
         self.down_btn.clicked.connect(self.move_down)
         self.add_btn.clicked.connect(self.add_profile)
+        self.dup_btn.clicked.connect(self.duplicate_profile)
         self.del_btn.clicked.connect(self.delete_profile)
         self.toggle_btn.clicked.connect(self.toggle_archive)
 
         btn_layout.addWidget(self.up_btn)
         btn_layout.addWidget(self.down_btn)
         btn_layout.addWidget(self.add_btn)
+        btn_layout.addWidget(self.dup_btn)
         btn_layout.addWidget(self.del_btn)
         btn_layout.addStretch()
         btn_layout.addWidget(self.toggle_btn)
@@ -250,6 +255,23 @@ class ProfileListWidget(QWidget):
             name="新 Profile",
             commandline="cmd.exe"
         )
+        self.settings.profiles.append(new_profile)
+        item = self._make_item(new_profile)
+        self.active_list.addItem(item)
+        self.active_list.setCurrentItem(item)
+        self._update_labels()
+        self.profile_added.emit()
+
+    def duplicate_profile(self):
+        lst = self.active_list if self._active_selected else self.archive_list
+        current = lst.currentItem()
+        if not current:
+            return
+        src: Profile = current.data(Qt.ItemDataRole.UserRole)
+        new_profile = copy.deepcopy(src)
+        new_profile.guid = "{" + str(uuid.uuid4()) + "}"
+        new_profile.name = src.name + " (副本)"
+        new_profile.hidden = False
         self.settings.profiles.append(new_profile)
         item = self._make_item(new_profile)
         self.active_list.addItem(item)

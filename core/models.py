@@ -40,6 +40,7 @@ class TerminalSettings:
     profiles: List[Profile] = field(default_factory=list)
     defaultProfile: str = ""
     schemes: List[Dict[str, Any]] = field(default_factory=list)
+    profileDefaults: Dict[str, Any] = field(default_factory=dict)
     extra: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
@@ -47,7 +48,7 @@ class TerminalSettings:
             "$schema": "https://raw.githubusercontent.com/microsoft/terminal/main/doc/cascadia/SettingsSchema.json",
             "defaultProfile": self.defaultProfile,
             "profiles": {
-                "defaults": {},
+                "defaults": self.profileDefaults,
                 "list": [p.to_dict() for p in self.profiles]
             },
             "schemes": self.schemes,
@@ -58,6 +59,7 @@ class TerminalSettings:
     def from_dict(data: dict) -> "TerminalSettings":
         profiles_data = data.get("profiles", {})
         profile_list = profiles_data.get("list", [])
+        profile_defaults = profiles_data.get("defaults", {})
         profiles = [Profile.from_dict(p) for p in profile_list]
         schemes = data.get("schemes", [])
         extra = {k: v for k, v in data.items()
@@ -66,5 +68,6 @@ class TerminalSettings:
             profiles=profiles,
             defaultProfile=data.get("defaultProfile", ""),
             schemes=schemes,
+            profileDefaults=profile_defaults,
             extra=extra
         )

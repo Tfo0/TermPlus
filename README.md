@@ -2,7 +2,31 @@
 
 Windows Terminal `settings.json` 可视化编辑器，告别手动改 JSON。
 
-> 截图待更新
+## 预览
+
+### 深色主题
+
+主界面采用深色配色，Profile 列表与配置编辑区左右分栏布局。
+
+<img width="1284" height="780" alt="深色主题" src="https://github.com/user-attachments/assets/81ee7754-aba7-49ea-b87d-8d5f9b695990" />
+
+### 浅色主题
+
+一键切换浅色模式，适合亮光环境使用。
+
+<img width="1289" height="788" alt="浅色主题" src="https://github.com/user-attachments/assets/c2876676-2f3e-4ec3-81b8-207858cf4004" />
+
+### 设置面板
+
+在设置中管理命令行预设、主题切换、配置文件路径等全局选项。
+
+<img width="778" height="791" alt="设置界面" src="https://github.com/user-attachments/assets/5b9cd876-7d14-40c0-bf17-1e1dfd112b40" />
+
+### 应用效果
+
+编辑保存后，Windows Terminal 即时生效。
+
+<img width="2528" height="1505" alt="最终效果" src="https://github.com/user-attachments/assets/1b54a542-5e26-4b02-9465-4c05bb452399" />
 
 ## 功能
 
@@ -31,28 +55,6 @@ python main.py
 ```bash
 build.bat
 # 输出：dist/TermPlus.exe
-```
-
-## 项目结构
-
-```
-TermPlus/
-├── core/
-│   ├── app_config.py      # 应用级配置（路径、主题、预设）
-│   ├── models.py          # Profile / TerminalSettings 数据模型
-│   ├── settings.py        # settings.json 读写
-│   └── theme.py           # 深色 / 浅色主题
-├── ui/
-│   ├── main_window.py     # 主窗口
-│   ├── profile_list.py    # 侧边栏列表（常用 / 归档分区）
-│   ├── profile_form.py    # Profile 编辑表单
-│   └── settings_dialog.py # 设置对话框
-├── assets/
-│   └── icon.ico
-├── main.py
-├── build.spec             # PyInstaller 配置
-├── build.bat
-└── requirements.txt
 ```
 
 ## 配置文件位置

@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
     def __init__(self, app_config: AppConfig = None):
         super().__init__()
         self.setWindowTitle("TermPlus  ·  by Tfo0")
-        self.setGeometry(100, 100, 860, 500)
+        self.setGeometry(100, 100, 900, 640)
         _base = getattr(sys, '_MEIPASS', os.path.dirname(os.path.dirname(__file__)))
         self.setWindowIcon(QIcon(os.path.join(_base, 'assets', 'icon.ico')))
 
@@ -45,6 +45,7 @@ class MainWindow(QMainWindow):
         self.profile_list.profile_selected.connect(self._on_profile_selected)
         self.profile_list.profile_added.connect(self.mark_modified)
         self.profile_list.profile_removed.connect(self.mark_modified)
+        self.profile_list.structure_changed.connect(self.mark_modified)
         self.profile_form.live_update.connect(self._on_live_update)
 
         right_widget = QWidget()
@@ -158,6 +159,9 @@ class MainWindow(QMainWindow):
         try:
             self.profile_form.get_profile()
             self.current_settings.profiles = self.profile_list.get_profiles_order()
+            folders, loose = self.profile_list.get_menu_structure()
+            self.current_settings.menu_folders = folders
+            self.current_settings.menu_loose = loose
             self.settings_manager.save(self.current_settings)
             self.modified = False
             self.setWindowTitle("TermPlus  ·  by Tfo0")

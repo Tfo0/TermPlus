@@ -19,3 +19,9 @@ dist/
 # OS
 Thumbs.db
 Desktop.ini
+
+# Temp/dev files
+_*.py
+*.png
+test_*.py
+shot_*.png

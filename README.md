@@ -8,13 +8,15 @@ Windows Terminal `settings.json` 可视化编辑器，告别手动改 JSON。
 
 主界面采用深色配色，Profile 列表与配置编辑区左右分栏布局。
 
-<img width="1284" height="780" alt="深色主题" src="https://github.com/user-attachments/assets/81ee7754-aba7-49ea-b87d-8d5f9b695990" />
+<img width="1333" height="990" alt="image" src="https://github.com/user-attachments/assets/1fe6ac64-9d8f-4106-95fb-9be91dd2bd65" />
+
 
 ### 浅色主题
 
 一键切换浅色模式，适合亮光环境使用。
 
-<img width="1289" height="788" alt="浅色主题" src="https://github.com/user-attachments/assets/c2876676-2f3e-4ec3-81b8-207858cf4004" />
+<img width="1338" height="991" alt="image" src="https://github.com/user-attachments/assets/a3e5c806-8d61-4f5c-866a-cdeb418ba4f3" />
+
 
 ### 设置面板
 

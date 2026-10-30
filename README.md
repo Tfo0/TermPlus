@@ -28,7 +28,8 @@ Windows Terminal `settings.json` 可视化编辑器，告别手动改 JSON。
 
 编辑保存后，Windows Terminal 即时生效。
 
-<img width="2528" height="1505" alt="最终效果" src="https://github.com/user-attachments/assets/1b54a542-5e26-4b02-9465-4c05bb452399" />
+<img width="2529" height="1509" alt="image" src="https://github.com/user-attachments/assets/4fb8d38f-27d4-4081-b9d9-b861949369f8" />
+
 
 ## 功能
 

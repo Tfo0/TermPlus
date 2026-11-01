@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+from datetime import datetime
 from pathlib import Path
 from typing import Optional
 from .models import TerminalSettings
@@ -32,7 +33,11 @@ class SettingsManager:
     def save(self, settings: TerminalSettings, backup: bool = True) -> bool:
         try:
             if backup and self.settings_path.exists():
-                shutil.copy2(self.settings_path, self.settings_path.with_suffix(".json.bak"))
+                now = datetime.now()
+                bak_dir = self.settings_path.parent / "BAK" / now.strftime("%Y-%m-%d")
+                bak_dir.mkdir(parents=True, exist_ok=True)
+                bak_file = bak_dir / f"settings.json.{now.strftime('%H%M%S')}"
+                shutil.copy2(self.settings_path, bak_file)
             with open(self.settings_path, "w", encoding="utf-8") as f:
                 json.dump(settings.to_dict(), f, indent=2, ensure_ascii=False)
             return True

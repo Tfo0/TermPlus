@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
             self.settings_manager.save(self.current_settings)
             self.modified = False
             self.setWindowTitle("TermPlus  ·  by Tfo0")
-            QMessageBox.information(self, "成功", "配置已保存（原文件已备份为 .bak）")
+            QMessageBox.information(self, "成功", "配置已保存（原文件已备份到 BAK 目录）")
         except Exception as e:
             QMessageBox.critical(self, "错误", f"保存失败: {e}")
 
